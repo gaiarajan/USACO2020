@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+public class breedflip {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("breedflip.in"));
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("breedflip.out")));
+        int numChars = Integer.parseInt(br.readLine());
+        char[] original = br.readLine().toCharArray();
+        char[] target = br.readLine().toCharArray();
+        int numFlips = 0;
+        int firstIndex = 0;
+        int lastIndex = 0;
+        while(!Arrays.equals(original, target))
+        {
+          while(original[firstIndex]==target[firstIndex])
+          {
+            firstIndex++;
+          }
+          lastIndex = firstIndex;
+          while(original[lastIndex]!=target[lastIndex])
+          {
+            lastIndex++;
+          }
+          for(int i=firstIndex; i<lastIndex; i++)
+          {
+            if(original[i]=='G')
+              original[i]='H';
+            else
+              original[i]='G';
+          }
+          numFlips++;
+        }
+        pw.println(numFlips);
+        pw.close();
+    }
+}
